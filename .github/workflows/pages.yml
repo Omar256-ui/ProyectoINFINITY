@@ -1,0 +1,39 @@
+# Publica SOLO la carpeta sitio/ en GitHub Pages.
+# En GitHub: Settings → Pages → Source: "GitHub Actions".
+name: Publicar sitio en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v7
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v6
+
+      - name: Empaquetar la carpeta sitio/
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: sitio
+
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v5

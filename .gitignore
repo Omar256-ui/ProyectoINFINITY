@@ -1,0 +1,10 @@
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+.vscode/
+.idea/
+vista-previa.html
+

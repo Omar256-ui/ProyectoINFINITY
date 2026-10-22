@@ -1,0 +1,11 @@
+Fotos de la sede Progreso
+=================================
+Pon aquí las fotos con estos nombres exactos (.jpg o .webp):
+
+  hero.jpg        Foto de fondo de la portada de la sede (horizontal, 2000 px de ancho)
+  la-sede.jpg     Foto vertical para la sección "La sede" (1200 x 1500 px aprox.)
+  galeria-01.jpg  … hasta galeria-09.jpg   Fotos de la galería (la 01 sale en grande)
+
+El sitio las muestra solo. Si una no existe, ese espacio se oculta
+(o muestra "Foto próximamente" mientras config.js tenga modoPropuesta: true).
+Cuando cambies fotos, sube el número de "version" en config.js.
