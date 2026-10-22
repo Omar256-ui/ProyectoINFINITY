@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR del sitio · Infinity Gym</title>
+<!-- Abre este archivo con doble clic: muestra el QR del sitio y deja descargarlo como PNG. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #100D0A; color: #EFE6D6; font-family: Arial, sans-serif; text-align: center; }
+  main { padding: 24px 16px; }
+  #qr { background: #fff; padding: 20px; border-radius: 10px; display: inline-block; }
+  #qr img, #qr canvas { width: min(80vw, 360px); height: auto; display: block; }
+  input { width: min(90vw, 420px); padding: 10px; margin: 16px 0 8px; border-radius: 6px; border: 1px solid #555; background: #19140F; color: inherit; }
+  a, button { display: inline-block; margin-top: 12px; padding: 12px 18px; border-radius: 6px; border: 0; background: #F8CD0C; color: #160F02; font-weight: 700; text-decoration: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <h1>QR de Infinity Gym</h1>
+  <div id="qr"></div>
+  <div><input id="link" value="https://omar256-ui.github.io/ProyectoINFINITY/" aria-label="Link del sitio"></div>
+  <button id="actualizar" type="button">Actualizar QR</button>
+  <a id="descargar" download="qr-infinity-gym.png" href="#">Descargar PNG</a>
+</main>
+<script>
+  var caja = document.getElementById("qr"), link = document.getElementById("link");
+  function dibujar() {
+    caja.innerHTML = "";
+    new QRCode(caja, { text: link.value.trim(), width: 800, height: 800, correctLevel: QRCode.CorrectLevel.M });
+    setTimeout(function () {
+      var c = caja.querySelector("canvas"), o = document.createElement("canvas");
+      o.width = o.height = 880;
+      var x = o.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, 880, 880); x.drawImage(c, 40, 40);
+      document.getElementById("descargar").href = o.toDataURL("image/png");
+    }, 100);
+  }
+  document.getElementById("actualizar").addEventListener("click", dibujar);
+  dibujar();
+</script>
+</body>
+</html>
